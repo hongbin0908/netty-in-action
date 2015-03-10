@@ -14,6 +14,13 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  *
  * @author <a href="mailto:norman.maurer@googlemail.com">Norman Maurer</a>
  */
+
+// #1 create a *ServerBooststrap* instance to bootstrap the server and bind it later.
+// #2 create and assign the NioEventLoopGroup instances to handle event processing.
+// (events: accepting new connections, receiving data, writing data and so on)
+// #3 specify the local InetSocketAddress to which the server binds
+// #4 set up a childHandler the executes the every accepted connection
+// #5 call the *ServerBootstrap.bind()* method to bind the server
 public class EchoServer {
 
     private final int port;
@@ -23,6 +30,7 @@ public class EchoServer {
     }
 
     public void start() throws Exception {
+    	
         NioEventLoopGroup group = new NioEventLoopGroup();
         try {
             ServerBootstrap b = new ServerBootstrap();
